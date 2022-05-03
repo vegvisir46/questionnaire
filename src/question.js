@@ -23,15 +23,15 @@ export class Question {
         return fetch(`https://questionnaire-c77ef-default-rtdb.asia-southeast1.firebasedatabase.app/questions.json?auth=${token}`)
             .then(response => response.json())
             .then(response => {
-                if (response.error) {
+                if (response && response.error) {
                     return `<p class="error">${response.error}</p>`;
                 }
 
                 return response ? Object.keys(response).map(key => ({
                     ...response[key],
                     id: key
-                })) : []
-            })
+                })) : [];
+            });
     }
 
     static renderList() {
@@ -42,6 +42,12 @@ export class Question {
 
         const list = document.getElementById('list');
         list.innerHTML = html;
+    }
+
+    static listToHtml(questions) {
+        return questions.length
+            ? `<ol>${questions.map(q => `<li>${q.text}</li>`).join('')}</ol>`
+            : '<p>Вопросов пока нет</p>';
     }
 }
 
