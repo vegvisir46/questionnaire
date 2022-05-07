@@ -1,0 +1,17 @@
+.nav {
+    grid-area: n;
+    border-radius: 5px;
+    background-color: #d7d0ff;
+    margin: 1px;
+    height: 240px;
+}
+
+.item {
+    font-size: 20px;
+    padding: 15px 0 0 20px;
+    cursor: pointer;
+}
+
+.item:hover {
+    color: #585CC6;
+}
